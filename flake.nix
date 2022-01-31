@@ -40,5 +40,9 @@
           };
       });
       defaultPackage = forAllSystems (system: self.packages."${system}".funnel);
+      overlay = (final: prev: {
+        inherit (self.packages.${final.stdenv.hostPlatform.system})
+          funnel;
+      });
     };
 }
